@@ -1,0 +1,16 @@
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\bin\Debug\net6.0-windows\CineFront.exe
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\bin\Debug\net6.0-windows\CineFront.deps.json
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\bin\Debug\net6.0-windows\CineFront.runtimeconfig.json
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\bin\Debug\net6.0-windows\CineFront.dll
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\bin\Debug\net6.0-windows\CineFront.pdb
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\obj\Debug\net6.0-windows\CineFront.FrmMenu.resources
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\obj\Debug\net6.0-windows\CineFront.csproj.GenerateResource.cache
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\obj\Debug\net6.0-windows\CineFront.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\obj\Debug\net6.0-windows\CineFront.AssemblyInfoInputs.cache
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\obj\Debug\net6.0-windows\CineFront.AssemblyInfo.cs
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\obj\Debug\net6.0-windows\CineFront.csproj.CoreCompileInputs.cache
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\obj\Debug\net6.0-windows\CineFront.dll
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\obj\Debug\net6.0-windows\refint\CineFront.dll
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\obj\Debug\net6.0-windows\CineFront.pdb
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\obj\Debug\net6.0-windows\CineFront.genruntimeconfig.cache
+C:\Users\TAHIEL\Desktop\TpProgramacion2\ProyectoCine\CineFront\CineFront\obj\Debug\net6.0-windows\ref\CineFront.dll
