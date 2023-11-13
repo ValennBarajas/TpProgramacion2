@@ -1,10 +1,10 @@
 create table Guia_Paternal(
-id_PG int identity (1,1),
+id_PG int,
 edad_min int,
 constraint pk_PG primary key (id_PG)
 )
 create table Genero_Peliculas(
-id_genero int identity (1,1),
+id_genero int,
 genero varchar (30),
 constraint pk_genero primary key (id_genero)
 )
@@ -21,18 +21,18 @@ ape_direc varchar(50),
 constraint pk_id_direc primary key (id_director)
 )
 create table Estado_Butacas(
-id_estado int identity (1,1),
+id_estado int,
 descripcion varchar(50),
 constraint pk_estado primary key (id_estado)
 )
 create table Tipo_Sala(
-id_tipo int identity (1,1),
+id_tipo int,
 tipo varchar (20),
 precio_sala decimal,
 constraint pk_tipo primary key (id_tipo)
 )
 create table Salas(
-cod_sala int identity (1,1),
+cod_sala int,
 nro_sala int,
 id_tipo int,
 constraint pk_sala primary key (cod_sala),
@@ -62,7 +62,7 @@ constraint fk_id_actor foreign key (id_actor) references Actores (id_actor),
 constraint fk_peliculas foreign key (cod_pelicula) references Peliculas (cod_pelicula)
 )
 create table Funciones(
-nro_funcion int identity (1,1),
+nro_funcion int,
 cod_sala int,
 fecha_horario datetime,
 cod_pelicula int,
@@ -71,7 +71,7 @@ constraint fk_salas_funciones foreign key (cod_sala) references Salas (cod_sala)
 constraint fk_peliculas_salas foreign key (cod_pelicula) references Peliculas (cod_pelicula)
 )
 create table Butacas(
-id_butaca int identity (1,1),
+id_butaca int,
 fila int,
 columna int,
 nro_funcion int,
@@ -86,19 +86,18 @@ documento varchar (20),
 constraint pk_cliente primary key (id_cliente)
 )
 create table Formas_Pago(
-cod_forma_pago int identity (1,1),
+cod_forma_pago int,
 descripcion varchar (100),
 constraint pk_forma_pago primary key (cod_forma_pago)
 )
 create table Reservas(
 id_reserva int identity(1,1),
 id_butaca int,
-cod_reserva int,
 constraint pk_id_reserva primary key (id_reserva),
 constraint fk_id_butaca foreign key (id_butaca) references Butacas (id_butaca)
 )
 create table Comprobantes(
-nro_comprobante int,
+nro_comprobante int identity(1,1),
 fecha datetime,
 id_cliente int,
 cod_forma_pago int,
