@@ -215,7 +215,7 @@ VALUES (1, 1, 1, 'Protagonista'),
 (3, 3, 2, 'Protagonista'),
 (4, 4, 3, 'Antagonista'),
 (5, 5, 2, 'Secundario'),
-(6, 6, 3, 'Protagonista'),
+(6, 6, 3, 'Extra'),
 (7, 7, 1, 'Antagonista'),
 (8, 8, 2, 'Secundario'),
 (9, 9, 3, 'Protagonista'),
@@ -311,3 +311,48 @@ VALUES
     (9, 9, 27.50, 9, 6.50),
     (10, 10, 32.00, 10, 8.50)
 
+create proc sp_prox_pelicula
+@next int output
+as
+begin
+	SET @next = (SELECT MAX(cod_pelicula)+1  FROM Peliculas)
+end
+create proc sp_prox_comprobante
+@next int output
+as
+begin
+	SET @next = (SELECT MAX(nro_comprobante)+1  FROM Comprobantes)
+end
+create proc sp_consultar_actores
+as
+begin
+	SELECT * from Actores
+end
+create proc sp_consultar_butacas
+as
+begin
+	SELECT * from Butacas
+end
+create proc sp_insertar_reparto
+@id_reparto int,
+@id_actor int, 
+@cod_pelicula int, 
+@puesto varchar(100)
+AS
+BEGIN
+	INSERT INTO Reparto(id_reparto, id_actor, cod_pelicula, puesto)
+    VALUES (@id_reparto, @id_actor, @cod_pelicula, @puesto);
+END
+create proc sp_insertar_peliculas
+@titulo varchar(255), 
+@sinopsis varchar(255), 
+@id_pg int,
+@id_genero int,
+@id_director int,
+@presupuesto_nro int OUTPUT
+AS
+BEGIN
+	INSERT INTO Peliculas (titulo, sinopsis, id_PG, id_genero, id_director, fecha)
+    VALUES (@titulo,@sinopsis,@id_pg,@id_genero,@id_director,GETDATE());
+    SET @presupuesto_nro = SCOPE_IDENTITY();
+END
