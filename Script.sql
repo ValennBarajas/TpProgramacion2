@@ -386,7 +386,9 @@ on Detalle_Comprobantes
 for insert
 as
 begin
+declare @butaca int
+set @butaca = (select id_butaca from inserted)
 update Butacas
 set id_estado = 2
-where id_butaca=(select id_butaca from Butacas b join inserted i on b.id_butaca=i.id_butaca)
+where id_butaca= @butaca
 end
