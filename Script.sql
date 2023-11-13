@@ -334,25 +334,59 @@ begin
 	SELECT * from Butacas
 end
 create proc sp_insertar_reparto
-@id_reparto int,
-@id_actor int, 
+@reparto int,
+@actor int, 
 @cod_pelicula int, 
 @puesto varchar(100)
 AS
 BEGIN
 	INSERT INTO Reparto(id_reparto, id_actor, cod_pelicula, puesto)
-    VALUES (@id_reparto, @id_actor, @cod_pelicula, @puesto);
+    VALUES (@reparto, @actor, @cod_pelicula, @puesto);
 END
 create proc sp_insertar_peliculas
 @titulo varchar(255), 
 @sinopsis varchar(255), 
-@id_pg int,
-@id_genero int,
-@id_director int,
+@pg int,
+@genero int,
+@director int,
 @presupuesto_nro int OUTPUT
 AS
 BEGIN
 	INSERT INTO Peliculas (titulo, sinopsis, id_PG, id_genero, id_director, fecha)
-    VALUES (@titulo,@sinopsis,@id_pg,@id_genero,@id_director,GETDATE());
+    VALUES (@titulo,@sinopsis,@pg,@genero,@director,GETDATE());
     SET @presupuesto_nro = SCOPE_IDENTITY();
 END
+
+create proc sp_insertar_detalle
+@detalle int,
+@nro_comprobante int,
+@precio money,
+@butaca int, 
+@descuento decimal(4,2)
+AS
+BEGIN
+	INSERT INTO Detalle_Comprobantes(id_detalle, nro_comprobante, precio, id_butaca, descuento)
+    VALUES (@detalle,@nro_comprobante,@precio,@butaca, @descuento);
+END
+
+create proc sp_insertar_comprobantes
+@cliente int,
+@forma_pago int,
+@reserva varchar(100),
+@presupuesto_nro int OUTPUT
+AS
+BEGIN
+	INSERT INTO Comprobantes (fecha, id_cliente, cod_forma_pago, reserva)
+    VALUES (GETDATE(),@cliente,@forma_pago,@reserva);
+    SET @presupuesto_nro = SCOPE_IDENTITY();
+END
+
+Create trigger t_insertar_detalle_comprobante
+on Detalle_Comprobantes
+for insert
+as
+begin
+update Butacas
+set id_estado = 2
+where id_butaca=(select id_butaca from Butacas b join inserted i on b.id_butaca=i.id_butaca)
+end
