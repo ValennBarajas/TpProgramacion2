@@ -1,0 +1,12 @@
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\bin\Debug\net6.0\BibliotecaCine.deps.json
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\bin\Debug\net6.0\BibliotecaCine.dll
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\bin\Debug\net6.0\BibliotecaCine.pdb
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\obj\Debug\net6.0\BibliotecaCine.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\obj\Debug\net6.0\BibliotecaCine.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\obj\Debug\net6.0\BibliotecaCine.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\obj\Debug\net6.0\BibliotecaCine.AssemblyInfo.cs
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\obj\Debug\net6.0\BibliotecaCine.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\obj\Debug\net6.0\BibliotecaCine.dll
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\obj\Debug\net6.0\refint\BibliotecaCine.dll
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\obj\Debug\net6.0\BibliotecaCine.pdb
+C:\Users\User\Desktop\Git de Labo-pro\TpProgramacion2\TpProgramacion2\ProyectoCine\BibliotecaCine\obj\Debug\net6.0\ref\BibliotecaCine.dll
