@@ -6,8 +6,22 @@ using System.Threading.Tasks;
 
 namespace BibliotecaCine.Entidades.Peliculas
 {
-    internal class Reparto
+    public class Reparto
     {
+        public int Id { get; set; }
+        public int Id_Actor { get; set; }
+        public int Cod_Pelicula { get; set; }
+        public string Puesto { get; set; }
+        public List<Pelicula> Peliculas { get; set; }
+        public Reparto(int id, int act, int peli, string puesto, List<Pelicula> peliculas)
+        {
+            this.Id = id;
+            this.Id_Actor = act;
+            this.Cod_Pelicula = peli;
+            this.Puesto = puesto;
+            this.Peliculas = peliculas;
+
+        }
         public List<Actor> actores { get; set; }
         public List<Director> directors { get; set; }
         public Reparto()

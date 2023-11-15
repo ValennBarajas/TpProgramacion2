@@ -36,8 +36,6 @@ namespace BibliotecaCine.Datos.Implementacion
             return lst;
         }
 
-  
-
         public bool crearFuncion(Funciones oFuncion)
         {
             bool ok = true;

@@ -15,6 +15,7 @@ namespace BibliotecaCine.Entidades.Peliculas
         private int id_director;
         private DateTime fecha;
         private int id_tipo;
+        private Reparto repartos;
 
         public int CodPelicula { get; set; }
         public string Titulo { get; set; }
@@ -24,12 +25,11 @@ namespace BibliotecaCine.Entidades.Peliculas
         public int IdActor { get; set; }
         public int IdDirector { get; set; }
         public DateTime FechaEstreno { get; set; }
-
         public int Id_Tipo { get; set; }
+        public Reparto Repartos { get; set; }
 
 
-
-        public Pelicula(int codPeli, string titu, string sinop, int idPg, int idGen, int idAct, int idDire, DateTime fec, int id_tipo)
+        public Pelicula(int codPeli, string titu, string sinop, int idPg, int idGen, int idAct, int idDire, DateTime fec, int id_tipo, Reparto rep)
         {
             CodPelicula = codPeli;
             Titulo = titu;
@@ -40,9 +40,10 @@ namespace BibliotecaCine.Entidades.Peliculas
             IdDirector = idDire;
             FechaEstreno = fec;
             Id_Tipo = id_tipo;
+            Repartos = rep;
         }
 
-        public Pelicula(int nro, string nombre, string sinopsis, int id_pg, int id_genero, int id_director, DateTime fecha)
+        public Pelicula(int nro, string nombre, string sinopsis, int id_pg, int id_genero, int id_director, DateTime fecha, Reparto rep)
         {
             this.nro = nro;
             this.nombre = nombre;
@@ -51,7 +52,18 @@ namespace BibliotecaCine.Entidades.Peliculas
             this.id_genero = id_genero;
             this.id_director = id_director;
             this.fecha = fecha;
+            this.repartos = rep;
+        }
 
+        public Pelicula(int nro, string? nombre, string? sinopsis, int id_pg, int id_genero, int id_director, DateTime fecha)
+        {
+            this.nro = nro;
+            this.nombre = nombre;
+            Sinopsis = sinopsis;
+            this.id_pg = id_pg;
+            this.id_genero = id_genero;
+            this.id_director = id_director;
+            this.fecha = fecha;
         }
     }
 }

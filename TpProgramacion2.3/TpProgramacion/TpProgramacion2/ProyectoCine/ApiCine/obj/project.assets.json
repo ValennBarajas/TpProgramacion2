@@ -914,24 +914,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\TpProgramacion2.2\\TpProgramacion\\TpProgramacion2\\ProyectoCine\\ApiCine\\ApiCine.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\TpProgramacion2\\TpProgramacion2.3\\TpProgramacion\\TpProgramacion2\\ProyectoCine\\ApiCine\\ApiCine.csproj",
       "projectName": "ApiCine",
-      "projectPath": "C:\\Users\\User\\Desktop\\TpProgramacion2.2\\TpProgramacion\\TpProgramacion2\\ProyectoCine\\ApiCine\\ApiCine.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\TpProgramacion2.2\\TpProgramacion\\TpProgramacion2\\ProyectoCine\\ApiCine\\obj\\",
+      "projectPath": "C:\\Users\\HP\\TpProgramacion2\\TpProgramacion2.3\\TpProgramacion\\TpProgramacion2\\ProyectoCine\\ApiCine\\ApiCine.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HP\\TpProgramacion2\\TpProgramacion2.3\\TpProgramacion\\TpProgramacion2\\ProyectoCine\\ApiCine\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -945,8 +940,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\User\\Desktop\\TpProgramacion2.2\\TpProgramacion\\TpProgramacion2\\ProyectoCine\\BibliotecaCine\\BibliotecaCine.csproj": {
-              "projectPath": "C:\\Users\\User\\Desktop\\TpProgramacion2.2\\TpProgramacion\\TpProgramacion2\\ProyectoCine\\BibliotecaCine\\BibliotecaCine.csproj"
+            "C:\\Users\\HP\\TpProgramacion2\\TpProgramacion2.3\\TpProgramacion\\TpProgramacion2\\ProyectoCine\\BibliotecaCine\\BibliotecaCine.csproj": {
+              "projectPath": "C:\\Users\\HP\\TpProgramacion2\\TpProgramacion2.3\\TpProgramacion\\TpProgramacion2\\ProyectoCine\\BibliotecaCine\\BibliotecaCine.csproj"
             }
           }
         }
