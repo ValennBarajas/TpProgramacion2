@@ -120,14 +120,14 @@ Comprobantes(nro_comprobante)
 
 INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (1, 18)
 INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (2, 21)
-INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (3, 25)
-INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (4, 30)
-INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (5, 35)
-INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (6, 40)
-INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (7, 45)
-INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (8, 50)
-INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (9, 55)
-INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (10, 60)
+INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (3, 0)
+INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (4, 3)
+INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (5, 12)
+INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (6, 6)
+INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (7, 10)
+INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (8, 8)
+INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (9, 13)
+INSERT INTO Guia_Paternal (id_PG, edad_min) VALUES (10, 15)
 
 INSERT INTO Genero_Peliculas (id_genero, genero) VALUES (1, 'Acción')
 INSERT INTO Genero_Peliculas (id_genero, genero) VALUES (2, 'Comedia')
@@ -391,4 +391,42 @@ set @butaca = (select id_butaca from inserted)
 update Butacas
 set id_estado = 2
 where id_butaca= @butaca
+end
+
+create proc sp_consultar_pelicula
+@cod_pelicula int = 0
+as
+begin
+	if(@cod_pelicula=0)
+	SELECT * from Peliculas
+	else
+	SELECT * from Peliculas where cod_pelicula=@cod_pelicula
+end
+
+create proc sp_consultar_comprobante
+@nro_comprobante int = 0
+as
+begin
+	if(@nro_comprobante=0)
+	SELECT * from Comprobantes
+	else
+	SELECT * from Comprobantes where nro_comprobante=@nro_comprobante
+end
+
+create proc sp_consultar_genero
+as
+begin
+	SELECT * from Genero_Peliculas
+end
+
+create proc sp_consultar_guia
+as
+begin
+	SELECT * from Guia_Paternal
+end
+
+create proc sp_consultar_directores
+as
+begin
+	SELECT * from Directores
 end
