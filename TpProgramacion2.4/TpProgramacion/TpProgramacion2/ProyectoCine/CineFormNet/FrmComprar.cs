@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace CineFormNet
+{
+    public partial class FrmComprar : Form
+    {
+        IServicio s;
+        Comprobante comp;
+        int vez;
+        TicketDAO ticketDao;
+        public FrmComprar()
+        {
+            InitializeComponent();
+        }
+    }
+}
