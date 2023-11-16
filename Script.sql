@@ -36,6 +36,7 @@ create table Salas(
 cod_sala int,
 nro_sala int,
 id_tipo int,
+estado varchar(50)
 constraint pk_sala primary key (cod_sala),
 constraint fk_tipo_salas foreign key (id_tipo) references Tipo_Sala (id_tipo)
 )
@@ -187,17 +188,17 @@ VALUES (1, 'Sala A', 10.99),
        (9, 'Sala I', 50.99),
        (10, 'Sala J', 55.99)
 
-INSERT INTO Salas (cod_sala, nro_sala, id_tipo)
-VALUES (1, 101, 1),
- (2, 102, 2),
-(3, 103, 1),
-(4, 104, 3),
-(5, 105, 2),
-(6, 106, 4),
-(7, 107, 1),
-(8, 108, 5),
-(9, 109, 3),
-(10, 110, 4)
+INSERT INTO Salas (cod_sala, nro_sala, id_tipo, estado)
+VALUES (1, 101, 1, 'Disponible'),
+ (2, 102, 2, 'Disponible'),
+(3, 103, 1, 'Disponible'),
+(4, 104, 3, 'Ocupada'),
+(5, 105, 2, 'Disponible'),
+(6, 106, 4, 'Ocupada'),
+(7, 107, 1, 'Disponible'),
+(8, 108, 5, 'Disponible'),
+(9, 109, 3, 'Ocupada'),
+(10, 110, 4, 'Disponible')
 
 INSERT INTO Peliculas (titulo, sinopsis, id_PG, id_genero, id_director, fecha, estado)
 VALUES ('Pelicula 1', 'Sinopsis de la Pelicula 1', 1, 1, 1, '2023-01-10' , 'Disponible'),
@@ -325,17 +326,23 @@ as
 begin
 	SET @next = (SELECT MAX(nro_comprobante)+1  FROM Comprobantes)
 end
+
+
 create proc sp_consultar_actores
 as
 begin
 	SELECT * from Actores
 end
+
+
 create proc sp_consultar_butacas
 @cod_funcion int
 as
 begin
 	SELECT * from Butacas b join Funciones f on b.nro_funcion=f.nro_funcion where b.nro_funcion=@cod_funcion
 end
+
+
 create proc sp_insertar_reparto
 @reparto int,
 @actor int, 
@@ -346,7 +353,9 @@ BEGIN
 	INSERT INTO Reparto(id_reparto, id_actor, cod_pelicula, puesto)
     VALUES (@reparto, @actor, @cod_pelicula, @puesto);
 END
-create proc sp_insertar_peliculas
+
+
+create procedure sp_insertar_peliculas
 @titulo varchar(255), 
 @sinopsis varchar(255), 
 @pg int,
@@ -360,7 +369,8 @@ BEGIN
     SET @pelicula_nro = SCOPE_IDENTITY();
 END
 
-create proc sp_insertar_detalle
+
+create procedure sp_insertar_detalle
 @detalle int,
 @nro_comprobante int,
 @precio money,
@@ -372,7 +382,8 @@ BEGIN
     VALUES (@detalle,@nro_comprobante,@precio,@butaca, @descuento);
 END
 
-create proc sp_insertar_comprobantes
+
+create procedure sp_insertar_comprobantes
 @cliente int,
 @forma_pago int,
 @reserva varchar(100),
@@ -383,6 +394,7 @@ BEGIN
     VALUES (GETDATE(),@cliente,@forma_pago,@reserva);
     SET @nro_comprobante = SCOPE_IDENTITY();
 END
+
 
 Create trigger t_insertar_detalle_comprobante
 on Detalle_Comprobantes
@@ -396,7 +408,8 @@ set id_estado = 2
 where id_butaca= @butaca
 end
 
-create proc sp_consultar_pelicula
+
+create procedure sp_consultar_pelicula
 @cod_pelicula int = 0
 as
 begin
@@ -406,47 +419,57 @@ begin
 	SELECT * from Peliculas where cod_pelicula=@cod_pelicula
 end
 
-create proc sp_consultar_comprobante
-@nro_comprobante int = 0
-as
-begin
-	if(@nro_comprobante=0)
-	SELECT * from Comprobantes
-	else
-	SELECT * from Comprobantes where nro_comprobante=@nro_comprobante
-end
 
-create proc sp_consultar_genero
+create procedure sp_consultar_comprobante
+@fecha_desde Datetime,
+@fecha_hasta Datetime,
+@cliente varchar(255)
+AS
+BEGIN
+	SELECT * 
+	FROM Comprobantes
+	WHERE (@fecha_desde is null OR fecha >= @fecha_desde)
+	AND (@fecha_hasta is null OR fecha <= @fecha_hasta)
+	AND (@cliente is null OR id_cliente LIKE '%' + @cliente + '%')
+END
+
+
+create procedure sp_consultar_genero
 as
 begin
 	SELECT * from Genero_Peliculas
 end
 
-create proc sp_consultar_guia
+
+create procedure sp_consultar_guia
 as
 begin
 	SELECT * from Guia_Paternal
 end
 
-create proc sp_consultar_directores
+
+create procedure sp_consultar_directores
 as
 begin
 	SELECT * from Directores
 end
 
-create proc sp_consultar_forma_pago
+
+create procedure sp_consultar_forma_pago
 as
 begin
 	SELECT * from Formas_Pago
 end
 
-create proc sp_consultar_reparto
+
+create procedure sp_consultar_reparto
 as
 begin
 	SELECT * from Reparto
 end
 
-Create proc Sp_ACTUALIZAR_PELICULAS
+
+Create procedure Sp_ACTUALIZAR_PELICULAS
 @id int
 as
 begin
@@ -454,6 +477,7 @@ Update Peliculas
 set estado = 'No Disponible'
 where cod_pelicula = @id
 end
+
 
 Create trigger t_actualizar_butaca
 on Detalle_Comprobantes
@@ -466,3 +490,5 @@ update Butacas
 set id_estado = 2
 where id_butaca= @butaca
 end
+
+
