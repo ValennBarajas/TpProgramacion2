@@ -334,14 +334,22 @@ begin
 	SELECT * from Actores
 end
 
-
-create proc sp_consultar_butacas
-@cod_funcion int
+create proc sp_consultar_detalles
 as
 begin
-	SELECT * from Butacas b join Funciones f on b.nro_funcion=f.nro_funcion where b.nro_funcion=@cod_funcion
+	SELECT * from Detalle_Comprobantes
 end
 
+create proc sp_consultar_butacas
+@cod_funcion int = 0
+as
+begin
+if(@cod_funcion = 0)
+select * from Butacas
+else
+SELECT * from Butacas b join Funciones f on b.nro_funcion=f.nro_funcion where b.nro_funcion=@cod_funcion
+end
+exec sp_consultar_butacas
 
 create proc sp_insertar_reparto
 @reparto int,
@@ -468,6 +476,12 @@ begin
 	SELECT * from Reparto
 end
 
+
+create proc sp_consultar_comprobantes
+as
+begin
+	SELECT * from Comprobantes
+end
 
 Create procedure Sp_ACTUALIZAR_PELICULAS
 @id int
