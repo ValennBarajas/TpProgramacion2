@@ -47,12 +47,14 @@ id_PG int,
 id_genero int,
 id_director int,
 fecha datetime,
+estado varchar(50)
 constraint pk_pelicula primary key (cod_pelicula),
 constraint fk_guia_peliculas foreign key (id_PG) references Guia_Paternal (id_PG),
 constraint fk_genero_peliculas foreign key (id_genero) references Genero_Peliculas
 (id_genero),
 constraint fk_id_director foreign key (id_director) references Directores (id_director)
 )
+
 create table Reparto(
 id_reparto int,
 id_actor int,
@@ -197,17 +199,17 @@ VALUES (1, 101, 1),
 (9, 109, 3),
 (10, 110, 4)
 
-INSERT INTO Peliculas (titulo, sinopsis, id_PG, id_genero, id_director, fecha)
-VALUES ('Pelicula 1', 'Sinopsis de la Pelicula 1', 1, 1, 1, '2023-01-10'),
-('Pelicula 2', 'Sinopsis de la Pelicula 2', 2, 2, 2, '2023-02-15'),
-('Pelicula 3', 'Sinopsis de la Pelicula 3', 3, 3, 3, '2023-03-20'),
-('Pelicula 4', 'Sinopsis de la Pelicula 4', 1, 4, 4, '2023-04-25'),
-('Pelicula 5', 'Sinopsis de la Pelicula 5', 2, 5, 5, '2023-05-30'),
-('Pelicula 6', 'Sinopsis de la Pelicula 6', 3, 6, 6, '2023-06-05'),
-('Pelicula 7', 'Sinopsis de la Pelicula 7', 1, 7, 7, '2023-07-10'),
-('Pelicula 8', 'Sinopsis de la Pelicula 8', 2, 8, 8, '2023-08-15'),
-('Pelicula 9', 'Sinopsis de la Pelicula 9', 3, 9, 9, '2023-09-20'),
-('Pelicula 10', 'Sinopsis de la Pelicula 10', 1, 10, 10, '2023-10-25')
+INSERT INTO Peliculas (titulo, sinopsis, id_PG, id_genero, id_director, fecha, estado)
+VALUES ('Pelicula 1', 'Sinopsis de la Pelicula 1', 1, 1, 1, '2023-01-10' , 'Disponible'),
+('Pelicula 2', 'Sinopsis de la Pelicula 2', 2, 2, 2, '2023-02-15','Disponible'),
+('Pelicula 3', 'Sinopsis de la Pelicula 3', 3, 3, 3, '2023-03-20','No Disponible'),
+('Pelicula 4', 'Sinopsis de la Pelicula 4', 1, 4, 4, '2023-04-25','Disponible'),
+('Pelicula 5', 'Sinopsis de la Pelicula 5', 2, 5, 5, '2023-05-30','No Disponible'),
+('Pelicula 6', 'Sinopsis de la Pelicula 6', 3, 6, 6, '2023-06-05','Disponible'),
+('Pelicula 7', 'Sinopsis de la Pelicula 7', 1, 7, 7, '2023-07-10','Disponible'),
+('Pelicula 8', 'Sinopsis de la Pelicula 8', 2, 8, 8, '2023-08-15','No Disponible'),
+('Pelicula 9', 'Sinopsis de la Pelicula 9', 3, 9, 9, '2023-09-20', 'No Disponible'),
+('Pelicula 10', 'Sinopsis de la Pelicula 10', 1, 10, 10, '2023-10-25','Disponible')
 
 INSERT INTO Reparto (id_reparto, id_actor, cod_pelicula, puesto)
 VALUES (1, 1, 1, 'Protagonista'),
@@ -329,9 +331,10 @@ begin
 	SELECT * from Actores
 end
 create proc sp_consultar_butacas
+@cod_funcion int
 as
 begin
-	SELECT * from Butacas
+	SELECT * from Butacas b join Funciones f on b.nro_funcion=f.nro_funcion where b.nro_funcion=@cod_funcion
 end
 create proc sp_insertar_reparto
 @reparto int,
@@ -349,12 +352,12 @@ create proc sp_insertar_peliculas
 @pg int,
 @genero int,
 @director int,
-@presupuesto_nro int OUTPUT
+@pelicula_nro int OUTPUT
 AS
 BEGIN
 	INSERT INTO Peliculas (titulo, sinopsis, id_PG, id_genero, id_director, fecha)
     VALUES (@titulo,@sinopsis,@pg,@genero,@director,GETDATE());
-    SET @presupuesto_nro = SCOPE_IDENTITY();
+    SET @pelicula_nro = SCOPE_IDENTITY();
 END
 
 create proc sp_insertar_detalle
@@ -373,12 +376,12 @@ create proc sp_insertar_comprobantes
 @cliente int,
 @forma_pago int,
 @reserva varchar(100),
-@presupuesto_nro int OUTPUT
+@nro_comprobante int OUTPUT
 AS
 BEGIN
 	INSERT INTO Comprobantes (fecha, id_cliente, cod_forma_pago, reserva)
     VALUES (GETDATE(),@cliente,@forma_pago,@reserva);
-    SET @presupuesto_nro = SCOPE_IDENTITY();
+    SET @nro_comprobante = SCOPE_IDENTITY();
 END
 
 Create trigger t_insertar_detalle_comprobante
@@ -429,4 +432,37 @@ create proc sp_consultar_directores
 as
 begin
 	SELECT * from Directores
+end
+
+create proc sp_consultar_forma_pago
+as
+begin
+	SELECT * from Formas_Pago
+end
+
+create proc sp_consultar_reparto
+as
+begin
+	SELECT * from Reparto
+end
+
+Create proc Sp_ACTUALIZAR_PELICULAS
+@id int
+as
+begin
+Update Peliculas 
+set estado = 'No Disponible'
+where cod_pelicula = @id
+end
+
+Create trigger t_actualizar_butaca
+on Detalle_Comprobantes
+for insert
+as
+begin
+declare @butaca int
+set @butaca = (select id_butaca from inserted)
+update Butacas
+set id_estado = 2
+where id_butaca= @butaca
 end
