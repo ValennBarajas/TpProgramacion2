@@ -227,14 +227,14 @@ VALUES (1, 1, 1, 'Protagonista'),
 INSERT INTO Funciones (nro_funcion, cod_sala, fecha_horario, cod_pelicula)
 VALUES (1, 1, '2023-01-10 14:00:00', 1),
 (2, 2, '2023-01-11 15:30:00', 2),
-(3, 3, '2023-01-12 18:00:00', 3),
+(3, 3, '2023-01-12 18:00:00', 10),
 (4, 4, '2023-01-13 20:15:00', 4),
-(5, 5, '2023-01-14 14:30:00', 5),
+(5, 5, '2023-01-14 14:30:00', 7),
 (6, 6, '2023-01-15 17:45:00', 1),
 (7, 7, '2023-01-16 16:00:00', 2),
-(8, 8, '2023-01-17 19:30:00', 3),
+(8, 8, '2023-01-17 19:30:00', 10),
 (9, 9, '2023-01-18 21:00:00', 4),
-(10, 10, '2023-01-19 14:30:00', 5)
+(10, 10, '2023-01-19 14:30:00', 7)
 
 INSERT INTO Butacas (id_butaca, fila, columna, nro_funcion, id_estado)
 VALUES 
@@ -247,7 +247,97 @@ VALUES
     (7, 3, 1, 1, 1),
     (8, 3, 2, 1, 1),
     (9, 3, 3, 1, 1),
-    (10, 4, 1, 1, 1)
+    (10, 4, 1, 1, 1),
+	(11, 1, 1, 2, 1),
+    (12, 1, 2, 2, 1),
+    (13, 1, 3, 2, 1),
+    (14, 2, 1, 2, 1),
+    (15, 2, 2, 2, 1),
+    (16, 2, 3, 2, 1),
+    (17, 3, 1, 2, 1),
+    (18, 3, 2, 2, 1),
+    (19, 3, 3, 2, 1),
+    (20, 4, 1, 2, 1),
+	(21, 1, 1, 3, 1),
+    (22, 1, 2, 3, 1),
+    (23, 1, 3, 3, 1),
+    (24, 2, 1, 3, 1),
+    (25, 2, 2, 3, 1),
+    (26, 2, 3, 3, 1),
+    (27, 3, 1, 3, 1),
+    (28, 3, 2, 3, 1),
+    (29, 3, 3, 3, 1),
+    (30, 4, 1, 3, 1),
+	(31, 1, 1, 4, 1),
+    (32, 1, 2, 4, 1),
+    (33, 1, 3, 4, 1),
+    (34, 2, 1, 4, 1),
+    (35, 2, 2, 4, 1),
+    (36, 2, 3, 4, 1),
+    (37, 3, 1, 4, 1),
+    (38, 3, 2, 4, 1),
+    (39, 3, 3, 4, 1),
+    (40, 4, 1, 4, 1),
+	(41, 1, 1, 5, 1),
+    (42, 1, 2, 5, 1),
+    (43, 1, 3, 5, 1),
+    (44, 2, 1, 5, 1),
+    (45, 2, 2, 5, 1),
+    (46, 2, 3, 5, 1),
+    (47, 3, 1, 5, 1),
+    (48, 3, 2, 5, 1),
+    (49, 3, 3, 5, 1),
+    (50, 4, 1, 5, 1),
+	(51, 1, 1, 6, 1),
+    (52, 1, 2, 6, 1),
+    (53, 1, 3, 6, 1),
+    (54, 2, 1, 6, 1),
+    (55, 2, 2, 6, 1),
+    (56, 2, 3, 6, 1),
+    (57, 3, 1, 6, 1),
+    (58, 3, 2, 6, 1),
+    (59, 3, 3, 6, 1),
+    (60, 4, 1, 6, 1),
+	(61, 1, 1, 7, 1),
+    (62, 1, 2, 7, 1),
+    (63, 1, 3, 7, 1),
+    (64, 2, 1, 7, 1),
+    (65, 2, 2, 7, 1),
+    (66, 2, 3, 7, 1),
+    (67, 3, 1, 7, 1),
+    (68, 3, 2, 7, 1),
+    (69, 3, 3, 7, 1),
+    (70, 4, 1, 7, 1),
+	(71, 1, 1, 8, 1),
+    (72, 1, 2, 8, 1),
+    (73, 1, 3, 8, 1),
+    (74, 2, 1, 8, 1),
+    (75, 2, 2, 8, 1),
+    (76, 2, 3, 8, 1),
+    (77, 3, 1, 8, 1),
+    (78, 3, 2, 8, 1),
+    (79, 3, 3, 8, 1),
+    (80, 4, 1, 8, 1),
+	(81, 1, 1, 9, 1),
+    (82, 1, 2, 9, 1),
+    (83, 1, 3, 9, 1),
+    (84, 2, 1, 9, 1),
+    (85, 2, 2, 9, 1),
+    (86, 2, 3, 9, 1),
+    (87, 3, 1, 9, 1),
+    (88, 3, 2, 9, 1),
+    (89, 3, 3, 9, 1),
+    (90, 4, 1, 9, 1),
+	(91, 1, 1, 10, 1),
+    (92, 1, 2, 10, 1),
+    (93, 1, 3, 10, 1),
+    (94, 2, 1, 10, 1),
+    (95, 2, 2, 10, 1),
+    (96, 2, 3, 10, 1),
+    (97, 3, 1, 10, 1),
+    (98, 3, 2, 10, 1),
+    (99, 3, 3, 10, 1),
+    (100, 4, 1, 10, 1)
 
 INSERT INTO Clientes (documento)
 VALUES 
@@ -294,12 +384,12 @@ VALUES
     ('2023-01-02 11:30:00', 2, 2, 'Reserva 2'),
     ('2023-01-03 13:00:00', 3, 3, 'Reserva 3'),
     ('2023-01-04 15:15:00', 4, 4, 'Reserva 4'),
-    ('2023-01-05 14:30:00', 5, 5, 'Reserva 5'),
+    ('2023-01-05 14:30:00', 5, 1, 'Reserva 5'),
     ('2023-01-06 16:45:00', 6, 6, 'Reserva 6'),
     ('2023-01-07 12:00:00', 7, 7, 'Reserva 7'),
-    ('2023-01-08 09:30:00', 8, 8, 'Reserva 8'),
-    ('2023-01-09 18:00:00', 9, 9, 'Reserva 9'),
-    ('2023-01-10 17:30:00', 10, 10, 'Reserva 10')
+    ('2023-01-08 09:30:00', 8, 2, 'Reserva 8'),
+    ('2023-01-09 18:00:00', 9, 1, 'Reserva 9'),
+    ('2023-01-10 17:30:00', 10, 1, 'Reserva 10')
 
 INSERT INTO Detalle_Comprobantes (id_detalle, nro_comprobante, precio, id_butaca, descuento)
 VALUES 
@@ -483,6 +573,12 @@ begin
 	SELECT * from Comprobantes
 end
 
+create proc sp_consultar_funciones
+as
+begin
+	SELECT * from Funciones
+end
+
 Create procedure Sp_ACTUALIZAR_PELICULAS
 @id int
 as
@@ -506,3 +602,46 @@ where id_butaca= @butaca
 end
 
 
+select year(C.fecha) año, month(C.fecha) mes,Count(C.nro_comprobante) Cant
+from Comprobantes C
+JOIN Formas_Pago f ON C.cod_forma_pago = f.cod_forma_pago
+where f.descripcion = 'Efectivo'
+AND year(C.fecha) = year(getdate())
+group BY year(C.fecha), month(C.fecha)
+having count(C.nro_comprobante) >= 1;
+
+
+select c.nro_comprobante,sum(precio*descuento)*count(d.id_butaca)/count(d.id_butaca)
+Importe_promedio, count(d.id_butaca)
+Cantidad_total
+from comprobantes c join detalle_comprobantes d on c.nro_comprobante=d.nro_comprobante
+join butacas b on d.id_butaca=b.id_butaca
+where fila not in (2,7,13,22) and columna not in (1, 7, 10)
+group by c.nro_comprobante
+
+
+select nom_actor + ' ' + ape_actor 'Actor'
+from actores a
+where ape_actor like'[k-z]%' and id_actor not in(select a.id_actor
+from
+peliculas p join directores d on p.id_director=d.id_director
+join genero_peliculas g on p.id_genero=g.id_genero
+join Reparto r on p.cod_pelicula=r.cod_pelicula
+join Actores a on r.id_actor=a.id_actor
+where  d.id_director in (3,4) and genero in ('terror','accion'))
+
+SELECT p.cod_pelicula, titulo, nom_direc, SUM(precio*descuento) AS TotalPrecioDescuento,
+COUNT(d.id_butaca) AS CantidadButacas
+FROM Comprobantes c
+JOIN detalle_comprobantes d ON d.nro_comprobante = c.nro_comprobante
+JOIN butacas b ON b.id_butaca = d.id_butaca
+JOIN funciones f ON f.nro_funcion = b.nro_funcion
+JOIN peliculas p ON p.cod_pelicula = f.cod_pelicula
+JOIN directores di ON di.id_director = p.id_director
+WHERE nom_direc LIKE '%[a,s,r,z]' AND d.nro_comprobante BETWEEN 5 AND 25
+GROUP BY p.cod_pelicula, titulo, nom_direc
+HAVING SUM(precio*descuento) / COUNT(d.id_butaca) < (
+ SELECT SUM(precio*descuento) / COUNT(d.id_butaca)
+ FROM comprobantes c1
+ JOIN Detalle_Comprobantes d1 ON d1.nro_comprobante = c1.nro_comprobante
+ WHERE YEAR(c1.fecha) = YEAR(GETDATE()))
