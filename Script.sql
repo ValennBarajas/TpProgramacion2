@@ -104,8 +104,7 @@ create table Comprobantes(
 nro_comprobante int identity(1,1),
 fecha datetime,
 id_cliente int,
-cod_forma_pago int,
-reserva varchar (50),
+cod_forma_pago int
 constraint nro_comprobante primary key (nro_comprobante),
 constraint fk_id_cliente foreign key (id_cliente) references Clientes (id_cliente)
 )
@@ -378,18 +377,18 @@ VALUES
     (9),
     (10)
 
-INSERT INTO Comprobantes (fecha, id_cliente, cod_forma_pago, reserva)
+INSERT INTO Comprobantes (fecha, id_cliente, cod_forma_pago)
 VALUES 
-    ('2023-01-01 10:00:00', 1, 1, 'Reserva 1'),
-    ('2023-01-02 11:30:00', 2, 2, 'Reserva 2'),
-    ('2023-01-03 13:00:00', 3, 3, 'Reserva 3'),
-    ('2023-01-04 15:15:00', 4, 4, 'Reserva 4'),
-    ('2023-01-05 14:30:00', 5, 1, 'Reserva 5'),
-    ('2023-01-06 16:45:00', 6, 6, 'Reserva 6'),
-    ('2023-01-07 12:00:00', 7, 7, 'Reserva 7'),
-    ('2023-01-08 09:30:00', 8, 2, 'Reserva 8'),
-    ('2023-01-09 18:00:00', 9, 1, 'Reserva 9'),
-    ('2023-01-10 17:30:00', 10, 1, 'Reserva 10')
+    ('2023-01-01 10:00:00', 1, 1),
+    ('2023-01-02 11:30:00', 2, 2),
+    ('2023-01-03 13:00:00', 3, 3),
+    ('2023-01-04 15:15:00', 4, 4),
+    ('2023-01-05 14:30:00', 5, 1),
+    ('2023-01-06 16:45:00', 6, 6),
+    ('2023-01-07 12:00:00', 7, 7),
+    ('2023-01-08 09:30:00', 8, 2),
+    ('2023-01-09 18:00:00', 9, 1),
+    ('2023-01-10 17:30:00', 10, 1)
 
 INSERT INTO Detalle_Comprobantes (id_detalle, nro_comprobante, precio, id_butaca, descuento)
 VALUES 
@@ -645,3 +644,15 @@ HAVING SUM(precio*descuento) / COUNT(d.id_butaca) < (
  FROM comprobantes c1
  JOIN Detalle_Comprobantes d1 ON d1.nro_comprobante = c1.nro_comprobante
  WHERE YEAR(c1.fecha) = YEAR(GETDATE()))
+
+create proc traer_clientes
+as
+begin 
+	select* from Clientes
+end
+Create proc BuscarComprobantes
+@id_cliente int
+as
+begin
+Select * from Comprobantes where id_cliente = @id_cliente
+end
