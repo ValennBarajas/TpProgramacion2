@@ -1,4 +1,4 @@
-use tplab
+use tplab1
 create table Guia_Paternal(
 id_PG int,
 edad_min int,
@@ -439,7 +439,7 @@ select * from Butacas
 else
 SELECT * from Butacas b join Funciones f on b.nro_funcion=f.nro_funcion where b.nro_funcion=@cod_funcion
 end
-exec sp_consultar_butacas
+
 
 create proc sp_insertar_reparto
 @reparto int,
@@ -484,11 +484,12 @@ END
 create procedure sp_insertar_comprobantes
 @cliente int,
 @forma_pago int,
+@fecha datetime = null,
 @nro_comprobante int OUTPUT
 AS
 BEGIN
-	INSERT INTO Comprobantes (fecha, id_cliente, cod_forma_pago)
-    VALUES (GETDATE(),@cliente,@forma_pago);
+	INSERT INTO Comprobantes (fecha, id_cliente, cod_forma_pago, fecha_baja)
+    VALUES (GETDATE(),@cliente,@forma_pago,@fecha);
     SET @nro_comprobante = SCOPE_IDENTITY();
 END
 
@@ -520,7 +521,7 @@ end
 create procedure sp_consultar_comprobante
 @fecha_desde Datetime,
 @fecha_hasta Datetime,
-@cliente int
+@cliente varchar(500)
 AS
 BEGIN
 	SELECT * 
@@ -530,6 +531,8 @@ BEGIN
 	AND (@cliente is null OR id_cliente LIKE '%' + @cliente + '%')
 	AND fecha_baja is null;
 END
+set dateformat mdy
+exec sp_consultar_comprobante @fecha_desde = '12/21/2020', @fecha_hasta ='12/12/2023', @cliente=5
 
 
 create procedure sp_consultar_genero
@@ -658,12 +661,6 @@ begin
 Select * from Comprobantes where id_cliente = @id_cliente
 end
 
-create proc sp_consultar_funciones
-as
-begin
-	SELECT * from Funciones
-end
-
 Create proc sp_prec_sala
 @id int
 as
@@ -679,6 +676,12 @@ create proc sp_prox_comprobante_s
 as
 begin
 	SELECT MAX(nro_comprobante)+1  FROM Comprobantes
+end
+
+create proc sp_prox_detalle
+as
+begin
+	SELECT MAX(id_detalle)+1  FROM Detalle_Comprobantes
 end
 
 CREATE PROCEDURE SP_ELIMINAR_COMPROBANTE
