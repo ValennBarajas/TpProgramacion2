@@ -483,12 +483,11 @@ END
 create procedure sp_insertar_comprobantes
 @cliente int,
 @forma_pago int,
-@reserva varchar(100),
 @nro_comprobante int OUTPUT
 AS
 BEGIN
-	INSERT INTO Comprobantes (fecha, id_cliente, cod_forma_pago, reserva)
-    VALUES (GETDATE(),@cliente,@forma_pago,@reserva);
+	INSERT INTO Comprobantes (fecha, id_cliente, cod_forma_pago)
+    VALUES (GETDATE(),@cliente,@forma_pago);
     SET @nro_comprobante = SCOPE_IDENTITY();
 END
 
@@ -655,4 +654,27 @@ Create proc BuscarComprobantes
 as
 begin
 Select * from Comprobantes where id_cliente = @id_cliente
+end
+
+create proc sp_consultar_funciones
+as
+begin
+	SELECT * from Funciones
+end
+
+Create proc sp_prec_sala
+@id int
+as
+begin
+Select precio_sala
+from Tipo_Sala tp join Salas s on tp.id_tipo = s.id_tipo
+join Funciones f on s.cod_sala = f.cod_sala
+join Butacas b on b.nro_funcion = f.nro_funcion
+where @id = b.id_butaca
+end
+
+create proc sp_prox_comprobante_s
+as
+begin
+	SELECT MAX(nro_comprobante)+1  FROM Comprobantes
 end
