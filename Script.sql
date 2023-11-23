@@ -104,7 +104,8 @@ create table Comprobantes(
 nro_comprobante int identity(1,1),
 fecha datetime,
 id_cliente int,
-cod_forma_pago int
+cod_forma_pago int,
+fecha_baja datetime
 constraint nro_comprobante primary key (nro_comprobante),
 constraint fk_id_cliente foreign key (id_cliente) references Clientes (id_cliente)
 )
@@ -377,18 +378,18 @@ VALUES
     (9),
     (10)
 
-INSERT INTO Comprobantes (fecha, id_cliente, cod_forma_pago)
+INSERT INTO Comprobantes (fecha, id_cliente, cod_forma_pago, fecha_baja)
 VALUES 
-    ('2023-01-01 10:00:00', 1, 1),
-    ('2023-01-02 11:30:00', 2, 2),
-    ('2023-01-03 13:00:00', 3, 3),
-    ('2023-01-04 15:15:00', 4, 4),
-    ('2023-01-05 14:30:00', 5, 1),
-    ('2023-01-06 16:45:00', 6, 6),
-    ('2023-01-07 12:00:00', 7, 7),
-    ('2023-01-08 09:30:00', 8, 2),
-    ('2023-01-09 18:00:00', 9, 1),
-    ('2023-01-10 17:30:00', 10, 1)
+    ('2023-01-01 10:00:00', 1, 1,null),
+    ('2023-01-02 11:30:00', 2, 2,null),
+    ('2023-01-03 13:00:00', 3, 3,null),
+    ('2023-01-04 15:15:00', 4, 4,null),
+    ('2023-01-05 14:30:00', 5, 1,null),
+    ('2023-01-06 16:45:00', 6, 6,null),
+    ('2023-01-07 12:00:00', 7, 7,null),
+    ('2023-01-08 09:30:00', 8, 2,null),
+    ('2023-01-09 18:00:00', 9, 1,null),
+    ('2023-01-10 17:30:00', 10, 1,null)
 
 INSERT INTO Detalle_Comprobantes (id_detalle, nro_comprobante, precio, id_butaca, descuento)
 VALUES 
@@ -519,7 +520,7 @@ end
 create procedure sp_consultar_comprobante
 @fecha_desde Datetime,
 @fecha_hasta Datetime,
-@cliente varchar(255)
+@cliente int
 AS
 BEGIN
 	SELECT * 
@@ -527,6 +528,7 @@ BEGIN
 	WHERE (@fecha_desde is null OR fecha >= @fecha_desde)
 	AND (@fecha_hasta is null OR fecha <= @fecha_hasta)
 	AND (@cliente is null OR id_cliente LIKE '%' + @cliente + '%')
+	AND fecha_baja is null;
 END
 
 
@@ -678,3 +680,36 @@ as
 begin
 	SELECT MAX(nro_comprobante)+1  FROM Comprobantes
 end
+
+CREATE PROCEDURE SP_ELIMINAR_COMPROBANTE
+	@comprobante int
+AS
+BEGIN
+	UPDATE Comprobantes SET fecha_baja = GETDATE()
+	WHERE nro_comprobante = @comprobante;
+END
+CREATE PROCEDURE SP_MODIFICAR_MAESTRO 
+	@cliente int, 
+	@fecha datetime,
+	@fecha_baja datetime,
+	@cod_forma int, 
+	@comprobante int
+AS
+BEGIN
+	UPDATE Comprobantes SET id_cliente = @cliente,  fecha= @fecha, cod_forma_pago = @cod_forma, fecha_baja= @fecha_baja
+	WHERE nro_comprobante = @comprobante;
+END
+
+CREATE PROCEDURE SP_REPORTE_COMPROBANTES
+@fecha_desde datetime, 
+@fecha_hasta datetime 
+
+AS
+BEGIN
+	SELECT b.id_butaca as butaca, count(d.id_butaca) as cantidad_butacas
+	FROM Detalle_Comprobantes d, Butacas b, Comprobantes c
+	WHERE d.id_butaca = b.id_butaca
+	AND d.nro_comprobante = c.nro_comprobante
+	AND c.fecha between @fecha_desde and @fecha_hasta
+	GROUP BY b.id_butaca;
+END
