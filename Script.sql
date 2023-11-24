@@ -753,3 +753,9 @@ BEGIN
 	UPDATE Peliculas SET titulo = @titulo,  sinopsis= @sinopsis, id_PG = @id_PG, id_genero= @id_genero, id_director=@id_director,fecha=@fecha,estado=@estado
 	WHERE cod_pelicula = cod_pelicula;
 END
+
+create procedure sp_consultar_peliculas
+as
+begin
+	SELECT * from Peliculas
+end
