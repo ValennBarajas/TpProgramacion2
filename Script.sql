@@ -424,11 +424,12 @@ begin
 	SELECT * from Actores
 end
 
-create proc sp_consultar_detalles
+alter proc sp_consultar_detalles
 as
 begin
-	SELECT * from Detalle_Comprobantes
+	SELECT nro_comprobante,precio,id_butaca,descuento from Detalle_Comprobantes
 end
+exec sp_consultar_detalles
 
 create proc sp_consultar_butacas
 @cod_funcion int = 0
@@ -684,6 +685,20 @@ begin
 	SELECT MAX(id_detalle)+1  FROM Detalle_Comprobantes
 end
 
+create proc sp_prox_reparto
+as
+begin
+	SELECT MAX(id_reparto)+1  FROM Reparto
+end
+
+create proc sp_prox_peliculas
+
+as
+begin
+	SELECT MAX(cod_pelicula)+1  FROM Peliculas
+end
+exec sp_prox_peliculas
+
 CREATE PROCEDURE SP_ELIMINAR_COMPROBANTE
 	@comprobante int
 AS
@@ -715,4 +730,26 @@ BEGIN
 	AND d.nro_comprobante = c.nro_comprobante
 	AND c.fecha between @fecha_desde and @fecha_hasta
 	GROUP BY b.id_butaca;
+END
+CREATE PROCEDURE SP_ELIMINAR_pelicula
+	@cod_pelicula int
+AS
+BEGIN
+	UPDATE Peliculas SET estado = 'No Disponible'
+	WHERE cod_pelicula = @cod_pelicula;
+END
+
+create PROCEDURE SP_MODIFICAR_pelicula
+	@titulo varchar(20) = null, 
+	@sinopsis varchar(100) = null,
+	@id_PG int = null,
+	@id_genero int = null,
+	@id_director int = null,
+	@fecha datetime = null,
+	@estado varchar(50),
+	@cod_pelicula int
+AS
+BEGIN
+	UPDATE Peliculas SET titulo = @titulo,  sinopsis= @sinopsis, id_PG = @id_PG, id_genero= @id_genero, id_director=@id_director,fecha=@fecha,estado=@estado
+	WHERE cod_pelicula = cod_pelicula;
 END
