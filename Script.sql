@@ -691,10 +691,10 @@ BEGIN
 	UPDATE Comprobantes SET fecha_baja = GETDATE()
 	WHERE nro_comprobante = @comprobante;
 END
-CREATE PROCEDURE SP_MODIFICAR_MAESTRO 
+create PROCEDURE SP_MODIFICAR_MAESTRO 
 	@cliente int, 
 	@fecha datetime,
-	@fecha_baja datetime,
+	@fecha_baja datetime = null,
 	@cod_forma int, 
 	@comprobante int
 AS
