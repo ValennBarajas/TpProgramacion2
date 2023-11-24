@@ -424,7 +424,7 @@ begin
 	SELECT * from Actores
 end
 
-alter proc sp_consultar_detalles
+create proc sp_consultar_detalles
 as
 begin
 	SELECT nro_comprobante,precio,id_butaca,descuento from Detalle_Comprobantes
