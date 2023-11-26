@@ -1,4 +1,4 @@
-use tplab1
+use tplabfinal
 create table Guia_Paternal(
 id_PG int,
 edad_min int,
@@ -731,6 +731,7 @@ BEGIN
 	AND c.fecha between @fecha_desde and @fecha_hasta
 	GROUP BY b.id_butaca;
 END
+
 CREATE PROCEDURE SP_ELIMINAR_pelicula
 	@cod_pelicula int
 AS
@@ -751,7 +752,7 @@ create PROCEDURE SP_MODIFICAR_pelicula
 AS
 BEGIN
 	UPDATE Peliculas SET titulo = @titulo,  sinopsis= @sinopsis, id_PG = @id_PG, id_genero= @id_genero, id_director=@id_director,fecha=@fecha,estado=@estado
-	WHERE cod_pelicula = cod_pelicula;
+	WHERE cod_pelicula = @cod_pelicula;
 END
 
 create procedure sp_consultar_peliculas
